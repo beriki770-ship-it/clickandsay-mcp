@@ -37,8 +37,10 @@ close a round, fetch a screenshot). It cannot create or delete projects, cannot
 read another account's data, and cannot touch account settings. It is
 rate-limited to 120 requests per minute.
 
-The AI connection is part of the Studio and Agency plans (and trials). See
-section 5 for what happens on other plans.
+The AI connection is part of the Studio and Agency plans. A new account's
+14-day trial runs on Start, which has no AI connection: to use it during the
+trial, pick Studio (or Agency) and add a payment method. The first charge comes
+after day 14. See section 5 for what happens on other plans.
 
 ## 2. Install
 
@@ -208,9 +210,9 @@ works, nothing to re-wire. If the plan stays ended until the account is erased,
 the key goes with the account. The owner sees "suspended: plan ended" next to
 the key in admin `#ai`. The tools report it to the agent in plain words.
 
-**The AI connection is a Studio and Agency feature.** Trial and organisation seats
-have it too. On a Start plan (for instance after a trial ends and Start is bought)
-a key is suspended the same way: every call answers `402 planfeature`, the key is
+**The AI connection is a Studio and Agency feature.** Organisation seats have it
+too. A new account's trial runs on Start and has no AI connection until Studio or
+Agency is picked (first charge after day 14). On a Start plan a key is suspended the same way: every call answers `402 planfeature`, the key is
 not deleted, and it works again as soon as the account is on Studio or Agency. The
 owner sees why next to the key in admin `#ai`, and the tools say it in plain words.
 
