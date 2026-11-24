@@ -1,0 +1,35 @@
+{
+  "name": "clickandsay-mcp",
+  "version": "0.2.0",
+  "mcpName": "io.github.beriki770-ship-it/clickandsay",
+  "description": "MCP server for ClickAndSay: pulls client feedback cards with their exact selector, click point, DOM snippet, console errors and 3D scene state into Claude Code, Cursor or any MCP client.",
+  "license": "MIT",
+  "author": "Wild Digital Moments",
+  "homepage": "https://clickandsay.com/",
+  "type": "module",
+  "bin": {
+    "clickandsay-mcp": "server.mjs"
+  },
+  "main": "server.mjs",
+  "files": [
+    "server.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "mcp-server",
+    "clickandsay",
+    "website-feedback",
+    "bug-tracking",
+    "claude-code",
+    "cursor"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0"
+  }
+}
