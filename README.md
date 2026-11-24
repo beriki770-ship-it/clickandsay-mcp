@@ -1,5 +1,7 @@
 # clickandsay-mcp
 
+<a href="https://glama.ai/mcp/servers/beriki770-ship-it/clickandsay-mcp"><img width="380" height="200" src="https://glama.ai/mcp/servers/beriki770-ship-it/clickandsay-mcp/badges/card.svg" alt="clickandsay-mcp MCP server" /></a>
+
 An MCP server that puts your [ClickAndSay](https://clickandsay.com/) feedback
 queue inside Claude Code, Claude Desktop, Cursor, or any other MCP client. Your
 client marks something on their site; your coding agent gets the card with the
