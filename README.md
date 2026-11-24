@@ -43,7 +43,7 @@ section 5 for what happens on other plans.
 ### Claude Code
 
 ```bash
-claude mcp add clickandsay -e CLICKANDSAY_API_KEY=pk_live_your_key_here -- npx -y clickandsay-mcp
+claude mcp add clickandsay -e CLICKANDSAY_API_KEY=pk_live_your_key_here -- npx -y github:beriki770-ship-it/clickandsay-mcp
 ```
 
 Check it came up with `claude mcp list`.
@@ -58,7 +58,7 @@ and restart Claude Desktop:
   "mcpServers": {
     "clickandsay": {
       "command": "npx",
-      "args": ["-y", "clickandsay-mcp"],
+      "args": ["-y", "github:beriki770-ship-it/clickandsay-mcp"],
       "env": { "CLICKANDSAY_API_KEY": "pk_live_your_key_here" }
     }
   }
@@ -74,7 +74,7 @@ and restart Claude Desktop:
   "mcpServers": {
     "clickandsay": {
       "command": "npx",
-      "args": ["-y", "clickandsay-mcp"],
+      "args": ["-y", "github:beriki770-ship-it/clickandsay-mcp"],
       "env": { "CLICKANDSAY_API_KEY": "pk_live_your_key_here" }
     }
   }
@@ -83,7 +83,7 @@ and restart Claude Desktop:
 
 ### Any other MCP client
 
-Command `npx -y clickandsay-mcp`, transport stdio, environment variable
+Command `npx -y github:beriki770-ship-it/clickandsay-mcp`, transport stdio, environment variable
 `CLICKANDSAY_API_KEY`.
 
 ### Environment
