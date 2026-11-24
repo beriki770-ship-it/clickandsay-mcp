@@ -6,6 +6,10 @@
   "license": "MIT",
   "author": "Wild Digital Moments",
   "homepage": "https://clickandsay.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beriki770-ship-it/clickandsay-mcp.git"
+  },
   "type": "module",
   "bin": {
     "clickandsay-mcp": "server.mjs"
