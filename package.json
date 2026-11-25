@@ -1,6 +1,6 @@
 {
   "name": "clickandsay-mcp",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "mcpName": "io.github.beriki770-ship-it/clickandsay",
   "description": "MCP server for ClickAndSay: pulls client feedback cards with their exact selector, click point, DOM snippet, console errors and 3D scene state into Claude Code, Cursor or any MCP client.",
   "license": "MIT",

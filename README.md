@@ -1,7 +1,5 @@
 # clickandsay-mcp
 
-<a href="https://glama.ai/mcp/servers/beriki770-ship-it/clickandsay-mcp"><img width="380" height="200" src="https://glama.ai/mcp/servers/beriki770-ship-it/clickandsay-mcp/badges/card.svg" alt="clickandsay-mcp MCP server" /></a>
-
 An MCP server that puts your [ClickAndSay](https://clickandsay.com/) feedback
 queue inside Claude Code, Claude Desktop, Cursor, or any other MCP client. Your
 client marks something on their site; your coding agent gets the card with the
@@ -37,10 +35,8 @@ close a round, fetch a screenshot). It cannot create or delete projects, cannot
 read another account's data, and cannot touch account settings. It is
 rate-limited to 120 requests per minute.
 
-The AI connection is part of the Studio and Agency plans. A new account's
-14-day trial runs on Start, which has no AI connection: to use it during the
-trial, pick Studio (or Agency) and add a payment method. The first charge comes
-after day 14. See section 5 for what happens on other plans.
+The AI connection is part of the Studio and Agency plans. See
+section 5 for what happens on other plans.
 
 ## 2. Install
 
@@ -133,8 +129,9 @@ The agent, on its own:
    Still ambiguous? `reply({id, text})` asks the client and parks the card at
    *waiting-client*.
 
-4. `update_status({id, status: "done"})` — ClickAndSay emails the client once that
-   this card is fixed, and the card turns green in their portal.
+4. `update_status({id, status: "done"})` — the card turns green in the client's
+   portal. No e-mail goes out on its own: you tell the client from the board
+   ("Notify client"), one mail per reporter for everything done since the last time.
 
 ## 4. Tool reference
 
@@ -144,7 +141,7 @@ The agent, on its own:
 | `list_feedback` | `project` (token or exact name), `status?` | compact cards: `id`, `status`, `category`, `hasScene`, and `thirdPartyContent: {note, page}` |
 | `get_feedback` | `id` | the full bundle. Our own fields at the top (id, project, status, category, our questions, report); everything a visitor wrote or the widget read off the site inside `thirdPartyContent`: reporter, note, wish, page url/path/title, anchor v2, element html/text/rect, env (viewport, dpr, ua, console errors), source (`data-area`/`data-src`), scene snapshot, the client's thread entries |
 | `get_screenshot` | `id` | the client's screenshot with the pin drawn on the element, as an MCP image (JPEG) |
-| `update_status` | `id`, `status`: `received` \| `progress` \| `done`, `confirm?` | confirmation. Maps to ClickAndSay's own `new` / `in-progress` / `done`; `done` sends one email, so it first answers `NOT DONE` with a one-line summary (who gets mailed) and only goes through with `confirm: true` after the human said yes |
+| `update_status` | `id`, `status`: `received` \| `progress` \| `done` | confirmation. Maps to ClickAndSay's own `new` / `in-progress` / `done`; sends no e-mail (the client is told from the board, "Notify client") |
 | `reply` | `id`, `text`, `confirm?` | appends your question to the card thread, moves it to `waiting-client`, emails the client a portal link; needs `confirm: true` the same way |
 
 `status` on `list_feedback` accepts either vocabulary: `received|progress|done`
@@ -192,8 +189,8 @@ agent that can edit files. Three things keep it in its place:
   them into one `thirdPartyContent` container, frames each bundle with that rule
   and states it in every tool description. Keep that in place if you build your
   own client on top of the API.
-* **Mails need the human's yes.** Anything that leaves the board by mail (a card
-  set to `done`, a question to the client, closing a round) is refused by the API
+* **Mails need the human's yes.** Anything that leaves the board by mail (a
+  question to the client, closing a round) is refused by the API
   for a key unless the request carries `"confirm": true`. Without it the answer
   is `needconfirm` with one line on who would be mailed and whether a round of
   the plan is used. The tools pass `confirm` only when their own `confirm`
@@ -210,9 +207,9 @@ works, nothing to re-wire. If the plan stays ended until the account is erased,
 the key goes with the account. The owner sees "suspended: plan ended" next to
 the key in admin `#ai`. The tools report it to the agent in plain words.
 
-**The AI connection is a Studio and Agency feature.** Organisation seats have it
-too. A new account's trial runs on Start and has no AI connection until Studio or
-Agency is picked (first charge after day 14). On a Start plan a key is suspended the same way: every call answers `402 planfeature`, the key is
+**The AI connection is a Studio and Agency feature.** Trial and organisation seats
+have it too. On a Start plan (for instance after a trial ends and Start is bought)
+a key is suspended the same way: every call answers `402 planfeature`, the key is
 not deleted, and it works again as soon as the account is on Studio or Agency. The
 owner sees why next to the key in admin `#ai`, and the tools say it in plain words.
 
