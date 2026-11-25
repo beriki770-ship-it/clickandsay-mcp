@@ -66,6 +66,11 @@ class PinpointError extends Error {}
 // Retries exactly once on 429: the per-key limit is 120 requests/minute, so a
 // looping agent that trips it is usually one burst away from being fine again.
 async function api(action, { method = 'GET', query = {}, body = null, raw = false } = {}) {
+  // H5-01: the key travels in a header, so never over plain http to a remote host
+  // (a wrong or planted CLICKANDSAY_BASE would hand it to anyone on the path).
+  if (!/^https:\/\//i.test(BASE) && !/^http:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/i.test(BASE)) {
+    throw new PinpointError(`CLICKANDSAY_BASE must start with https:// (plain http only for localhost). Got: ${BASE}`);
+  }
   if (!KEY) {
     throw new PinpointError(
       'CLICKANDSAY_API_KEY is not set. Create a key in ClickAndSay: admin -> "connect your AI" (#ai) -> ' +
